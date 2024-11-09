@@ -9,11 +9,36 @@ var c = document.querySelector(`canvas`)
 var ctx = c.getContext(`2d`)
 var fps = 1000/60
 var timer = setInterval(main, fps)
+var score = 0
 
+var maxwellImage = document.getElementById("")
+var miceImage = document.getElementById("")
+var projectileImage = document.getElementById("")
 
 /*------------Declare Variables Here--------*/
 
+var player = new GameObject()
+player.color = "#0000ff"
+player.w = 100
+player.h = 100
+player.friction = 0.9
+var playerSpeed = 4
 
+//enemy stuff
+
+var enemies = []
+var numberOfEnemies = 20
+
+for(var i = 0; i<numberOfEnemies; i++){
+    enemies[i] = new GameObject()
+    enemies[i].color = 'red'
+    enemies[i].w = 25
+    enemies[i].h = 25
+    enemies[i].vy = .5
+    enemies[i].vx = 0
+    enemies[i].x = rand(0, c.width)
+    enemies[i].y = rand(0, c.height)
+}
 
 
 /*--------------main()------------------------
@@ -31,6 +56,8 @@ function main()
 
     //draw the pictures
 }
+
+function game()
 
 //random number generator
 function rand(_low, _high)
