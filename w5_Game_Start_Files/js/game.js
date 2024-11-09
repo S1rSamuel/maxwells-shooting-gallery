@@ -101,7 +101,8 @@ player.move()
 //player.render()
 player.renderImage(maxwell)
 
-ctx.font = "69px Papyrus"
+ctx.font = "69px Papyrus";
+ctx.fillStyle = "white";
 ctx.fillText(`Score: ${score}`,10,80)
 
 
