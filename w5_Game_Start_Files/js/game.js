@@ -8,11 +8,11 @@ Game Setup
 var c = document.querySelector(`canvas`)
 var ctx = c.getContext(`2d`)
 var fps = 1000/60
-var timer = setInterval(main, fps)
+var timer = setInterval(gaming, fps)
 var score = 0
 
-var maxwellImage = document.getElementById("")
-var miceImage = document.getElementById("")
+var maxwellImage = document.getElementById("maxwell")
+var miceImage = document.getElementById("hampter")
 var projectileImage = document.getElementById("")
 
 /*------------Declare Variables Here--------*/
@@ -22,7 +22,8 @@ player.color = "#0000ff"
 player.w = 100
 player.h = 100
 player.friction = 0.9
-var playerSpeed = 4
+player.y = 800
+var playerSpeed = 10
 
 //enemy stuff
 
@@ -31,7 +32,7 @@ var numberOfEnemies = 20
 
 for(var i = 0; i<numberOfEnemies; i++){
     enemies[i] = new GameObject()
-    enemies[i].color = 'red'
+    enemies[i].color = "red"
     enemies[i].w = 25
     enemies[i].h = 25
     enemies[i].vy = .5
@@ -45,7 +46,7 @@ for(var i = 0; i<numberOfEnemies; i++){
 This is the function that makes the game work
 ---------------------------------------------*/
 
-function main()
+/*function main()
 {
     //erases the screen
     ctx.clearRect(0,0,c.width,c.height); 
@@ -55,9 +56,56 @@ function main()
     //Any collision detection 
 
     //draw the pictures
-}
+}*/
 
-function game()
+function gaming(){
+
+    ctx.clearRect(0,0,c.width,c.height);
+
+    if(a==true || a==true){ player.vx = -playerSpeed}
+    if(d==true || d==true){ player.vx = playerSpeed}
+
+    player.vx *= player.friction
+    player.vy *= player.friction
+
+    //draw the pictures
+    for(var i = 0; i<enemies.length; i++){
+        enemies[i].move()
+        //enemies[i].render()
+        enemies[i].renderImage(hampter)
+        //reset the enemies if they're offscreen from bottom.
+        if(enemies[i].y > c.height + enemies[i].h){
+            enemies[i].y = rand(-c.height, 0)
+            enemies[i].x = rand(0, c.width)
+                if(score > 0){
+                    score --
+                }
+            
+            //console.log(enemies[i].x, enemies[i].y)
+            //enemies[i].vy = -3
+        }
+
+        if(enemies[i].y < - enemies[i].h){
+            enemies[i].y = rand(-c.height, 0)
+            enemies[i].x = rand(0, c.width)
+            enemies[i].vy = .5
+
+        }
+
+        if(player.overlaps(enemies[i])){
+                enemies[i].vy = -9999
+                score ++
+        }
+}
+player.move()
+//player.render()
+player.renderImage(maxwell)
+
+ctx.font = "69px Papyrus"
+ctx.fillText(`Score: ${score}`,10,80)
+
+
+}
 
 //random number generator
 function rand(_low, _high)
