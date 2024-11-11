@@ -23,31 +23,42 @@ player.w = 200
 player.h = 150
 player.friction = 0.9
 player.y = 800
-var playerSpeed = 10
+var playerSpeed = 7
 
 var bullet = new GameObject()
-bullet.w = 20
-bullet.h = 20
+bullet.w = 35
+bullet.h = 35
 bullet.x = player.x + 55
 bullet.y = player.y - 50
-bullet.vy = -5
+bullet.vy = -5 
 
 //enemy stuff
 
 var enemies = []
-var numberOfEnemies = 50
+var numberOfEnemies = 20
 
 for(var i = 0; i<numberOfEnemies; i++){
     enemies[i] = new GameObject()
     enemies[i].color = "red"
-    enemies[i].w = 35
-    enemies[i].h = 35
-    enemies[i].vy = .5
+    enemies[i].w = 50
+    enemies[i].h = 50
+    enemies[i].vy = .4
     enemies[i].vx = 0
     enemies[i].x = rand(0, c.width)
     enemies[i].y = rand(0, 300)
 }
 
+var bullets = []
+var numberOfBullets = 0
+
+for(var i = 0; i<numberOfBullets; i++){
+    bullets[i] = new GameObject()
+    bullets[i].w = 30
+    bullets[i].h = 30
+    bullets[i].x = player.x + 55
+    bullets[i].y = player.y - 50
+    bullets[i].vy = -5
+}
 
 /*--------------main()------------------------
 This is the function that makes the game work
@@ -75,6 +86,19 @@ function gaming(){
     player.vx *= player.friction
     player.vy *= player.friction
 
+    /*for(var i = 0; i<bullets.length; i++){
+                bullets[i].move()
+                bullets[i].renderImage(bulleta)
+                        
+                if(shoot==true){
+                numberOfBullets ++
+                }
+            }
+
+        bullets[i].move()
+        bullets[i].renderImage(bulleta)*/
+                        
+
     //draw the pictures
     for(var i = 0; i<enemies.length; i++){
         enemies[i].move()
@@ -85,23 +109,25 @@ function gaming(){
             enemies[i].y = rand(-c.height, 0)
             enemies[i].x = rand(0, c.width)
                 if(score > 0){
-                    score --
+                    score = 0
                 }
             
             //console.log(enemies[i].x, enemies[i].y)
             //enemies[i].vy = -3
         }
 
-        if(shoot==true){
-            bullet.x = player.x + 50
-            bullet.y = player.y - 50
-        }
+        
 
         if(enemies[i].y < - enemies[i].h){
             enemies[i].y = rand(-c.height, 0)
             enemies[i].x = rand(0, c.width)
-            enemies[i].vy = .5
+            enemies[i].vy = .4
 
+        }
+
+        if(shoot==true){
+            bullet.x = player.x + 55
+            bullet.y = player.y - 50
         }
 
         if(player.overlaps(enemies[i])){
@@ -111,8 +137,11 @@ function gaming(){
         if(bullet.overlaps(enemies[i])){
             enemies[i].vy = -999
                         score ++
-        }
+        } 
+                        
 }
+
+
 player.move()
 //player.render()
 player.renderImage(maxwell)
@@ -121,7 +150,9 @@ ctx.font = "69px Papyrus";
 ctx.fillStyle = "white";
 ctx.fillText(`Score: ${score}`,10,80)
 
+//bullets[i].move()
 bullet.move()
+//bullets[i].renderImage(bulleta)
 bullet.renderImage(bulleta)
     
 }
