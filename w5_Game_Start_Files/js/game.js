@@ -13,7 +13,7 @@ var score = 0
 
 var maxwellImage = document.getElementById("maxwell")
 var miceImage = document.getElementById("hampter")
-var projectileImage = document.getElementById("")
+var projectileImage = document.getElementById("bulleta")
 
 /*------------Declare Variables Here--------*/
 
@@ -25,10 +25,17 @@ player.friction = 0.9
 player.y = 800
 var playerSpeed = 10
 
+var bullet = new GameObject()
+bullet.w = 20
+bullet.h = 20
+bullet.x = player.x
+bullet.y = player.y
+bullet.vy = -5
+
 //enemy stuff
 
 var enemies = []
-var numberOfEnemies = 20
+var numberOfEnemies = 50
 
 for(var i = 0; i<numberOfEnemies; i++){
     enemies[i] = new GameObject()
@@ -38,7 +45,7 @@ for(var i = 0; i<numberOfEnemies; i++){
     enemies[i].vy = .5
     enemies[i].vx = 0
     enemies[i].x = rand(0, c.width)
-    enemies[i].y = rand(0, c.height)
+    enemies[i].y = rand(0, 300)
 }
 
 
@@ -105,6 +112,12 @@ ctx.font = "69px Papyrus";
 ctx.fillStyle = "white";
 ctx.fillText(`Score: ${score}`,10,80)
 
+bullet.move()
+bullet.renderImage(bulleta)
+
+if(shoot==true){
+    
+}
 
 }
 
