@@ -28,8 +28,8 @@ var playerSpeed = 10
 var bullet = new GameObject()
 bullet.w = 20
 bullet.h = 20
-bullet.x = player.x
-bullet.y = player.y
+bullet.x = player.x + 55
+bullet.y = player.y - 50
 bullet.vy = -5
 
 //enemy stuff
@@ -92,6 +92,11 @@ function gaming(){
             //enemies[i].vy = -3
         }
 
+        if(shoot==true){
+            bullet.x = player.x + 50
+            bullet.y = player.y - 50
+        }
+
         if(enemies[i].y < - enemies[i].h){
             enemies[i].y = rand(-c.height, 0)
             enemies[i].x = rand(0, c.width)
@@ -100,8 +105,12 @@ function gaming(){
         }
 
         if(player.overlaps(enemies[i])){
-                enemies[i].vy = -9999
+                enemies[i].vy = -999
                 score ++
+        }
+        if(bullet.overlaps(enemies[i])){
+            enemies[i].vy = -999
+                        score ++
         }
 }
 player.move()
@@ -114,11 +123,7 @@ ctx.fillText(`Score: ${score}`,10,80)
 
 bullet.move()
 bullet.renderImage(bulleta)
-
-if(shoot==true){
     
-}
-
 }
 
 //random number generator
