@@ -35,7 +35,7 @@ bullet.vy = -5
 //enemy stuff
 
 var enemies = []
-var numberOfEnemies = 20
+var numberOfEnemies = 35
 
 for(var i = 0; i<numberOfEnemies; i++){
     enemies[i] = new GameObject()
