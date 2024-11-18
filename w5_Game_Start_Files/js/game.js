@@ -86,18 +86,18 @@ function gaming(){
     player.vx *= player.friction
     player.vy *= player.friction
 
-    /*for(var i = 0; i<bullets.length; i++){
-                bullets[i].move()
-                bullets[i].renderImage(bulleta)
+    // for(var i = 0; i<bullets.length; i++){
+    //             bullets[i].move()
+    //             bullets[i].renderImage(bulleta)
                         
-                if(shoot==true){
-                numberOfBullets ++
-                }
-            }
+    //             if(shoot==true){
+    //             numberOfBullets ++
+    //             }
+    //         }
 
-        bullets[i].move()
-        bullets[i].renderImage(bulleta)*/
-                        
+    //     bullets[i].move()
+    //     bullets[i].renderImage(bulleta)*/
+    // }                   
 
     //draw the pictures
     for(var i = 0; i<enemies.length; i++){
