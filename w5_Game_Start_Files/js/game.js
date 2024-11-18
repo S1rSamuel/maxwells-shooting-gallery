@@ -14,6 +14,7 @@ var score = 0
 var maxwellImage = document.getElementById("maxwell")
 var miceImage = document.getElementById("hampter")
 var projectileImage = document.getElementById("bulleta")
+var projectileImage = document.getElementById("rang")
 
 /*------------Declare Variables Here--------*/
 
@@ -26,9 +27,9 @@ player.y = 800
 var playerSpeed = 7
 
 var bullet = new GameObject()
-bullet.w = 35
+bullet.w = 50
 bullet.h = 35
-bullet.x = player.x + 55
+bullet.x = player.x 
 bullet.y = player.y - 50
 bullet.vy = -5 
 
@@ -116,18 +117,16 @@ function gaming(){
             //enemies[i].vy = -3
         }
 
-        
-
         if(enemies[i].y < - enemies[i].h){
             enemies[i].y = rand(-c.height, 0)
             enemies[i].x = rand(0, c.width)
             enemies[i].vy = .4
-
         }
 
         if(shoot==true){
             bullet.x = player.x + 55
             bullet.y = player.y - 50
+            bullet.vy = -5
         }
 
         if(player.overlaps(enemies[i])){
@@ -138,6 +137,12 @@ function gaming(){
             enemies[i].vy = -999
                         score ++
         } 
+        if(bullet.y < 50){
+            bullet.vy = 5
+        }
+        if(bullet.y > 850){
+            bullet.vy = -5
+        }
                         
 }
 
@@ -153,7 +158,7 @@ ctx.fillText(`Score: ${score}`,10,80)
 //bullets[i].move()
 bullet.move()
 //bullets[i].renderImage(bulleta)
-bullet.renderImage(bulleta)
+bullet.renderImage(rang)
     
 }
 
