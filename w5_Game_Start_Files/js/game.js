@@ -27,11 +27,11 @@ player.y = 800
 var playerSpeed = 7
 
 var bullet = new GameObject()
-bullet.w = 50
-bullet.h = 35
+bullet.w = 60
+bullet.h = 30
 bullet.x = player.x 
 bullet.y = player.y - 50
-bullet.vy = -5 
+bullet.vy = -6 
 
 //enemy stuff
 
@@ -101,6 +101,9 @@ function gaming(){
     // }                   
 
     //draw the pictures
+
+    bullet.x = player.x
+
     for(var i = 0; i<enemies.length; i++){
         enemies[i].move()
         //enemies[i].render()
@@ -126,7 +129,7 @@ function gaming(){
         if(shoot==true){
             bullet.x = player.x + 55
             bullet.y = player.y - 50
-            bullet.vy = -5
+            bullet.vy = -6
         }
 
         if(player.overlaps(enemies[i])){
@@ -138,10 +141,10 @@ function gaming(){
                         score ++
         } 
         if(bullet.y < 50){
-            bullet.vy = 5
+            bullet.vy = 6
         }
         if(bullet.y > 850){
-            bullet.vy = -5
+            bullet.vy = -6
         }
                         
 }
